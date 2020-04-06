@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.itcast.dao.UserLoginMapper">
+    <select id="UserLogin" resultType="cn.itcast.entity.User">
+        select * from login where email = #{param1}
+        and password = #{param2}
+    </select>
+
+    <insert id="AddOrderForm" parameterType="cn.itcast.entity.OrderForm">
+        insert into order_form (
+          order_time,
+          username,
+          number,
+          address
+        )
+        values
+        (
+        #{order_time},
+        #{username},
+        #{number},
+        #{address}
+        )
+    </insert>
+
+    <update id="DelOrderForm" parameterType="int">
+        delete from order_form where  order_number = #{param1}
+    </update>
+
+    <select id="UpdateOrderFormJSP" parameterType="int" resultType="cn.itcast.entity.OrderForm">
+        select * from order_form where order_number = #{param1}
+    </select>
+
+    <update id="UpdateOrderForm" parameterType="cn.itcast.entity.OrderForm">
+        UPDATE order_form set
+         order_time = #{order_time},
+          username= #{username},
+          number = #{number},
+          address = #{address}
+        where order_number = #{order_number}
+    </update>
+
+    <update id="DelSelected" parameterType="List">
+        delete from order_form
+        <where>
+            <if test="list != null and list.size > 0">
+                <foreach collection="list" item="id" open="order_number in(" close=")" separator=",">
+                    ${id}
+                </foreach>
+            </if>
+        </where>
+    </update>
+    
+    <select id="FindTotalCount" parameterType="java.lang.String" resultType="int">
+        select count(*) from order_form where 1=1
+        <if test="_parameter != null">
+            and username like #{param1}
+        </if>
+    </select>
+    <!--参数问题-->
+    <select id="FindByPage" resultType="cn.itcast.entity.OrderForm">
+        select * from order_form where 1 = 1
+        <if test="username != null and username !=''">
+            and username like #{param3}
+        </if>
+        limit #{param1}, #{param2}
+    </select>
+
+</mapper>
