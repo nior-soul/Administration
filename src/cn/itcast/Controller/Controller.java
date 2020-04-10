@@ -31,6 +31,7 @@ public class Controller {
         else {
             request.getSession().setAttribute("LoginSuccess",loginuser.getUsername());
             return "list";
+
         }
     }
 

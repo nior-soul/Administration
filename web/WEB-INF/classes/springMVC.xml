@@ -23,9 +23,10 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
     <!--过滤静态资源-->
-    <mvc:default-servlet-handler/>
-    <mvc:resources location="css" mapping="/css/**" />
-    <mvc:resources location="js" mapping="/css/**" />
+    <!--<mvc:default-servlet-handler/>-->
+    <!--<mvc:resources location="css" mapping="/css/**" />-->
+    <!--<mvc:resources location="js" mapping="/css/**" />-->
+    <!--<mvc:resources location="img" mapping="img/**" />-->
 
     <!--开启注解支持-->
     <mvc:annotation-driven></mvc:annotation-driven>

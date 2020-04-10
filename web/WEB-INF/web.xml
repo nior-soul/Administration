@@ -33,6 +33,14 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!--过滤静态资源-->
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>/assets/*"</url-pattern>
+        <url-pattern>/images/*</url-pattern>
+    </servlet-mapping>
     <!--中文乱码过滤器-->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
